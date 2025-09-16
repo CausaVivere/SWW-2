@@ -41,6 +41,10 @@ export default function ProductCard({
             <span
               key={size}
               className="mt-2 mr-2 inline-block rounded border px-2 py-1 text-sm hover:cursor-pointer hover:bg-zinc-100"
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/products/${product.id}?size=${size}`);
+              }}
             >
               {size}
             </span>

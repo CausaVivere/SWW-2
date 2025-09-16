@@ -7,6 +7,7 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
+import { useLocalStorage } from "./clientHooks";
 
 interface CartItem {
   product: Product;
@@ -26,7 +27,7 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useLocalStorage<CartItem[]>("cartItems", []);
 
   const add = (product: Product, quantity: number = 1) => {
     setItems((prevItems) => {
